@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { Minus, Plus, MessageSquareWarning } from 'lucide-react';
 import { CatalogItem, CartItem } from '../types';
 
