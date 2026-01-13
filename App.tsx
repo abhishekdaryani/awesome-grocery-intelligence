@@ -1,23 +1,27 @@
 import React, { useState, useMemo } from 'react';
 import { ShoppingCart, BrainCircuit } from 'lucide-react';
 import { INITIAL_CATALOG } from './constants';
-import { CartState, CartItem, Category } from './types';
+import { CartState, CartItem } from './types';
 import CategoryTabs from './components/CategoryTabs';
 import ItemCard from './components/ItemCard';
 import ReviewModal from './components/ReviewModal';
 
 const App: React.FC = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string>(Category.Vegetables);
+  const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [cart, setCart] = useState<CartState>({});
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Extract unique categories from catalog
+  // Extract unique categories from catalog and prepend 'All'
   const categories = useMemo(() => {
-    return Array.from(new Set(INITIAL_CATALOG.map(item => item.category)));
+    const distinctCategories = Array.from(new Set(INITIAL_CATALOG.map(item => item.category)));
+    return ['All', ...distinctCategories];
   }, []);
 
   // Filter items based on active tab
   const activeItems = useMemo(() => {
+    if (selectedCategory === 'All') {
+      return INITIAL_CATALOG;
+    }
     return INITIAL_CATALOG.filter(item => item.category === selectedCategory);
   }, [selectedCategory]);
 
