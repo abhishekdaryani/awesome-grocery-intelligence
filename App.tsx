@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import { ShoppingCart, BrainCircuit, Search, Plus } from 'lucide-react';
 import { INITIAL_CATALOG } from './constants';
 import { CartState, CartItem, CatalogItem } from './types';
